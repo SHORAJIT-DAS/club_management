@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus CCMS 2026 • Smart College Club Management System</title>
+  <meta name="description" content="Next-Gen Smart College Club Management System (CCMS) featuring Spotify dark luxury UI, Flipkart/Myntra product discovery for 6 clubs and 60 events, Uber live tracking for board volunteers, and faculty audit portal.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Pro CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-default-role="student">
+
+  <!-- ==========================================================================
+       TOP ANNOUNCEMENT BANNER (FLIPKART / MYNTRA PROMO TICKER)
+       ========================================================================== -->
+  <div style="background: linear-gradient(90deg, #1db954, #8c52ff, #00f2fe); color: #000; font-size: 0.76rem; font-weight: 800; padding: 0.45rem 1rem; text-align: center; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+    <span><i class="fa-solid fa-bolt"></i> CCMS 2026 ANNUAL CAMPUS CONCLAVE IS LIVE!</span>
+    <span style="opacity: 0.8; font-weight: 600;">• 6 Flagship Clubs • 60 Curated Events • Free Digital Entry Passes • Verifiable Certificates</span>
+    <a href="#eventsSection" style="background: #000; color: #fff; padding: 0.15rem 0.6rem; border-radius: 999px; text-decoration: none; font-size: 0.7rem; margin-left: 0.5rem;">Explore Now &rarr;</a>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR (SPOTIFY DARK LUXURY)
+       ========================================================================== -->
+  <header class="ccms-header">
+    <!-- Brand Emblem & Logo -->
+    <div class="brand-wrapper">
+      <div class="brand-icon-box" title="Campus CCMS 3D Emblem">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <h1 style="cursor: pointer;" onclick="window.location.href='index.html'">CAMPUS<span style="color: #1db954;"> CCMS</span></h1>
+        <div class="brand-tag">Smart Club Management • 2026</div>
+      </div>
+    </div>
+
+    <!-- Flipkart / Google Style Search Bar -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearchInput" placeholder="Search 60+ events, Singing Gala, HackGenesis, clubs, venues...">
+        <span style="font-size: 0.68rem; color: var(--text-muted); background: var(--bg-elevated); padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border-subtle); margin-left: 0.5rem;">Ctrl + K</span>
+      </div>
+    </div>
+
+    <!-- Client Type / Role Nav Switcher (Three Loggers) -->
+    <div class="role-nav-group" id="roleNavPills">
+      <button class="role-pill-btn active" id="btnRoleStudent" title="Student Customer Mode">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Student</span>
+      </button>
+      <button class="role-pill-btn" id="btnRoleFaculty" title="Faculty Mentor Audit Mode">
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <span>Faculty</span>
+      </button>
+      <button class="role-pill-btn" id="btnRoleBoard" title="Board Member / Volunteer Mode">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Board Lead</span>
+      </button>
+    </div>
+
+    <!-- Direct Page Shortcuts & User Profile -->
+    <div class="header-actions">
+      <!-- Dedicated 3 Web Pages Menu Dropdown -->
+      <div style="display: flex; gap: 0.4rem;">
+        <a href="student.html" class="btn-card-details" style="font-size: 0.74rem; padding: 0.4rem 0.75rem; text-decoration: none;" title="Go to Dedicated Student Page">
+          <i class="fa-solid fa-user-graduate" style="color: var(--accent-spotify);"></i> Student Page
+        </a>
+        <a href="faculty.html" class="btn-card-details" style="font-size: 0.74rem; padding: 0.4rem 0.75rem; text-decoration: none;" title="Go to Dedicated Faculty Page">
+          <i class="fa-solid fa-id-badge" style="color: var(--accent-purple);"></i> Faculty Page
+        </a>
+        <a href="board.html" class="btn-card-details" style="font-size: 0.74rem; padding: 0.4rem 0.75rem; text-decoration: none;" title="Go to Dedicated Board Page">
+          <i class="fa-solid fa-timeline" style="color: var(--accent-amber);"></i> Board Page
+        </a>
+      </div>
+
+      <!-- User Profile Badge with 2D Animated Avatar -->
+      <div class="user-badge" id="btnUserProfile" title="Current Active Profile">
+        <div class="user-2d-avatar" id="user2dAvatar">
+          <i class="fa-solid fa-graduation-cap" id="avatarIcon"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Shorajit Das</div>
+          <div class="user-role-label" id="userRoleLabel">Student Participant</div>
+        </div>
+      </div>
+
+      <!-- Logout Button -->
+      <button class="btn-logout" id="btnLogout" onclick="handleLogout()" title="Log out of PulseCampus">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Log Out</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN APP LAYOUT (SPOTIFY SIDEBAR + RESPONSIVE VIEWPORT)
+       ========================================================================== -->
+  <div class="ccms-app-layout">
+    
+    <!-- Spotify Left Navigation Rail -->
+    <aside class="spotify-sidebar">
+      <div>
+        <div class="sidebar-section-title">Navigation Hub</div>
+        <ul class="sidebar-nav-list">
+          <li>
+            <a href="#clubsSection" class="sidebar-link active">
+              <i class="fa-solid fa-shapes" style="color: var(--accent-spotify);"></i>
+              <span>6 Campus Clubs</span>
+            </a>
+          </li>
+          <li>
+            <a href="#eventsSection" class="sidebar-link">
+              <i class="fa-solid fa-calendar-days" style="color: var(--accent-purple);"></i>
+              <span>All 60 Events</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="openCornerDrawer('certificate')" class="sidebar-link">
+              <i class="fa-solid fa-award" style="color: var(--accent-amber);"></i>
+              <span>Certificate Vault</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="openCornerDrawer('feedback')" class="sidebar-link">
+              <i class="fa-solid fa-comment-dots" style="color: var(--accent-rose);"></i>
+              <span>MSQ Feedback</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Campus Clubs (6 Active)</div>
+        <div class="club-mini-list">
+          <div class="club-mini-item active" onclick="selectClub('singing')">
+            <span class="club-mini-bullet" style="background: #1db954;"></span>
+            <span>Aura Harmonics (Singing)</span>
+          </div>
+          <div class="club-mini-item" onclick="selectClub('dancing')">
+            <span class="club-mini-bullet" style="background: #ff007f;"></span>
+            <span>Pulse Choreotech (Dancing)</span>
+          </div>
+          <div class="club-mini-item" onclick="selectClub('hackathons')">
+            <span class="club-mini-bullet" style="background: #00f2fe;"></span>
+            <span>CodeNova Nexus (Hackathons)</span>
+          </div>
+          <div class="club-mini-item" onclick="selectClub('sports')">
+            <span class="club-mini-bullet" style="background: #ff9100;"></span>
+            <span>Apex Titans (Sports)</span>
+          </div>
+          <div class="club-mini-item" onclick="selectClub('research')">
+            <span class="club-mini-bullet" style="background: #9d4edd;"></span>
+            <span>Syntropy Labs (Research)</span>
+          </div>
+          <div class="club-mini-item" onclick="selectClub('fashion')">
+            <span class="club-mini-bullet" style="background: #ff0055;"></span>
+            <span>Vogue Vanguard (Fashion)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Role Switch Info Box in Sidebar -->
+      <div style="margin-top: auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem;">
+        <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Role Architecture</div>
+        <div style="font-size: 0.82rem; color: #fff; margin-top: 0.25rem; font-weight: 600;">Multi-Role Gateway Active</div>
+        <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.35rem; line-height: 1.3;">
+          Switch roles above or open dedicated client pages for Student, Faculty, or Board.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Viewport -->
+    <main class="main-viewport">
+
+      <!-- ======================================================================
+           VIEW 1: STUDENT PORTAL VIEW (DEFAULT FOR CUSTOMERS AS STUDENTS)
+           ====================================================================== -->
+      <section id="studentPortalView">
+        
+        <!-- Flipkart / Myntra Hero Carousel Banner -->
+        <div class="hero-banner-card">
+          <div class="banner-backdrop" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="hero-banner-content">
+            <div class="hero-badge-pill">
+              <i class="fa-solid fa-crown"></i>
+              Flagship Headline Event
+            </div>
+            <h2>Silver Jubilee Grand Gala & 60 Mega Events</h2>
+            <p>
+              Experience the grand 25th Inter-University Cultural, Tech & Sports Olympiad. 
+              Register solo or in teams, track your passes, earn verifiable certificates, and rate event stages.
+            </p>
+            <div class="banner-cta-group">
+              <button class="btn-primary-spotify" onclick="selectClub('singing')">
+                <i class="fa-solid fa-microphone-lines"></i> Explore Singing Club
+              </button>
+              <button class="btn-secondary-glass" onclick="document.getElementById('eventsSection').scrollIntoView({behavior: 'smooth'})">
+                <i class="fa-solid fa-fire"></i> View All 60 Events
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1: 2x3 / 2x4 3D Realistic Club Cards Showcase -->
+        <div id="clubsSection">
+          <div class="section-header-row">
+            <div class="section-titles">
+              <h3>
+                <i class="fa-solid fa-shapes" style="color: var(--accent-spotify);"></i>
+                Official Campus Clubs
+              </h3>
+              <p>Select any club below to view its 10 curated competitive events, mentors, and rules.</p>
+            </div>
+            <div style="color: var(--accent-spotify); font-weight: 700; font-size: 0.88rem;">
+              6 Active Guilds • 10 Events Each
+            </div>
+          </div>
+
+          <!-- Dynamic 2x4 Club Cards Grid (populated by app.js) -->
+          <div class="clubs-grid-showcase" id="clubsGrid">
+            <!-- Club Cards injected here -->
+          </div>
+        </div>
+
+        <!-- Section 2: 10 Events Per Club Showcase (Myntra/Flipkart Style Cards) -->
+        <div class="events-section-wrapper" id="eventsSection">
+          <div class="section-header-row">
+            <div class="section-titles">
+              <h3 id="selectedClubTitle">
+                <i class="fa-solid fa-calendar-check" style="color: var(--accent-cyan);"></i>
+                Aura Harmonics – Events Schedule
+              </h3>
+              <p id="selectedClubDesc">Showing 10 curated competitive events organized by Aura Harmonics. Register directly below!</p>
+            </div>
+          </div>
+
+          <!-- Filter Chips Bar -->
+          <div class="filter-chips-bar" id="filterChipsContainer">
+            <!-- Filter buttons injected here -->
+          </div>
+
+          <!-- 10 Events Product Grid -->
+          <div class="events-cards-grid" id="eventsGrid">
+            <!-- Event Cards injected here -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ======================================================================
+           VIEW 2: FACULTY MEMBERS PORTAL VIEW
+           ====================================================================== -->
+      <section id="facultyPortalView" style="display: none;">
+        <div class="faculty-portal-wrap">
+          
+          <!-- Faculty Hero Banner -->
+          <div class="portal-hero-banner">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(140, 82, 255, 0.2); color: var(--accent-purple); padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">
+                <i class="fa-solid fa-user-shield"></i> Faculty Mentor Audit Console
+              </div>
+              <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; margin: 0.5rem 0;">
+                Club Registrations & Attendance Roster
+              </h2>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; max-width: 600px;">
+                Select any club to inspect all students who registered for events. Approve registrations, mark physical presence, verify team sizes, and download audit sheets.
+              </p>
+            </div>
+            <div style="text-align: right;">
+              <button class="btn-primary-spotify" id="facultyExportBtn" style="background: linear-gradient(135deg, #8c52ff, #00f2fe); color: #fff;">
+                <i class="fa-solid fa-file-csv"></i> Export CSV Roster
+              </button>
+            </div>
+          </div>
+
+          <!-- Faculty Analytics Deck -->
+          <div class="faculty-stats-deck">
+            <div class="stat-widget">
+              <div class="stat-icon-wrap purple"><i class="fa-solid fa-users"></i></div>
+              <div class="stat-info-text">
+                <h4 id="statTotalRegistrations">0</h4>
+                <span>Total Registered</span>
+              </div>
+            </div>
+            <div class="stat-widget">
+              <div class="stat-icon-wrap green"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="stat-info-text">
+                <h4 id="statApprovedCount">0</h4>
+                <span>Approved Candidates</span>
+              </div>
+            </div>
+            <div class="stat-widget">
+              <div class="stat-icon-wrap cyan"><i class="fa-solid fa-user-check"></i></div>
+              <div class="stat-info-text">
+                <h4 id="statAttendanceCount">0</h4>
+                <span>Present Attendees</span>
+              </div>
+            </div>
+            <div class="stat-widget">
+              <div class="stat-icon-wrap amber"><i class="fa-solid fa-layer-group"></i></div>
+              <div class="stat-info-text">
+                <h4 id="statActiveEventsCount">10</h4>
+                <span>Events in Selected Club</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 for Faculty: SELECT ONE CLUB FROM THE 5-6 CLUBS -->
+          <div class="faculty-club-picker">
+            <div class="picker-left">
+              <i class="fa-solid fa-filter" style="color: var(--accent-purple); font-size: 1.2rem;"></i>
+              <div>
+                <strong style="color: #fff; display: block; font-size: 0.95rem;">Select Club to Inspect Registrations</strong>
+                <span style="font-size: 0.78rem; color: var(--text-secondary);">Displays all candidate submissions specifically for this club</span>
+              </div>
+            </div>
+            <select class="picker-select-control" id="facultyClubSelect">
+              <!-- Dynamically populated with Singing, Dancing, Hackathons, Sports, Research, Fashion -->
+            </select>
+          </div>
+
+          <!-- Registered Students Data Table -->
+          <div class="data-table-container">
+            <div class="table-toolbar">
+              <div style="display: flex; align-items: center; gap: 1rem; flex: 1; max-width: 400px;">
+                <div class="search-input-wrapper" style="width: 100%;">
+                  <i class="fa-solid fa-search"></i>
+                  <input type="text" id="facultySearchInput" placeholder="Filter by student name, ID, or event...">
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <select id="facultyStatusFilter" class="picker-select-control" style="min-width: 140px; font-size: 0.82rem; padding: 0.45rem 1rem;">
+                  <option value="all">All Statuses</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Pending">Pending</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="ccms-table">
+                <thead>
+                  <tr>
+                    <th>Registration ID & Time</th>
+                    <th>Student Name & ID</th>
+                    <th>Department & Year</th>
+                    <th>Club & Event Name</th>
+                    <th>Team Info</th>
+                    <th>Pass Status</th>
+                    <th>Attendance</th>
+                    <th>Audit Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="facultyTableBody">
+                  <!-- Populated dynamically by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 3: BOARD MEMBERS / VOLUNTEERS PORTAL (UBER STYLE LIVE TIMELINE)
+           ====================================================================== -->
+      <section id="boardPortalView" style="display: none;">
+        <div class="uber-tracker-wrapper">
+          
+          <!-- Board Member Hero Banner -->
+          <div class="portal-hero-banner" style="background: linear-gradient(135deg, rgba(255, 145, 0, 0.2), rgba(255, 42, 112, 0.15)), var(--bg-card);">
+            <div>
+              <div class="live-pulse-badge">
+                <span class="pulse-dot"></span> Uber-Style Live Event Tracker
+              </div>
+              <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; margin: 0.5rem 0;">
+                Board Member & Volunteer Operations
+              </h2>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; max-width: 650px;">
+                Select your club to monitor live event execution timings, stage setup milestones, technical checks, audio testing, and volunteer duty assignments.
+              </p>
+            </div>
+            <div style="text-align: right;">
+              <div style="background: var(--bg-elevated); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: inline-block;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Volunteer Roster</span>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent-amber);">100% On-Duty Standby</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 for Board: SELECT ONE CLUB -->
+          <div class="faculty-club-picker" style="border-left: 4px solid var(--accent-amber);">
+            <div class="picker-left">
+              <i class="fa-solid fa-satellite-dish" style="color: var(--accent-amber); font-size: 1.3rem;"></i>
+              <div>
+                <strong style="color: #fff; display: block; font-size: 0.95rem;">Select Club to Track Live Event Timings</strong>
+                <span style="font-size: 0.78rem; color: var(--text-secondary);">Volunteer dispatch, setup milestones, and stage itinerary</span>
+              </div>
+            </div>
+            <select class="picker-select-control" id="boardClubSelect">
+              <!-- Populated with Singing, Dancing, Hackathons, Sports, Research, Fashion -->
+            </select>
+          </div>
+
+          <!-- Uber-Style Live Timeline Containers -->
+          <div id="boardTimelineContainer">
+            <!-- Live Uber Execution Timelines injected here -->
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       SPOTIFY NOW-PLAYING / ACTIVE EVENT BOTTOM BAR
+       ========================================================================== -->
+  <div class="spotify-bottom-bar">
+    <div class="now-playing-event">
+      <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=150&q=80" alt="Event Thumb" class="now-playing-thumb" id="bottomEventThumb">
+      <div class="now-playing-meta">
+        <h5 id="bottomEventTitle">Silver Jubilee Grand Gala</h5>
+        <span id="bottomEventClub">Singing Club • Amphitheatre Main Stage</span>
+      </div>
+    </div>
+
+    <div class="bottom-center-tracker">
+      <div class="quick-timer-label">
+        <i class="fa-solid fa-ticket" style="color: var(--accent-spotify); margin-right: 0.35rem;"></i>
+        <span>REGISTRATIONS STATUS: LIVE & VERIFIABLE</span>
+      </div>
+      <div class="progress-track-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div class="bottom-actions-right">
+      <button class="btn-secondary-glass" onclick="openCornerDrawer('certificate')" style="font-size: 0.76rem; padding: 0.45rem 1rem;">
+        <i class="fa-solid fa-award" style="color: var(--accent-amber);"></i> Certificate
+      </button>
+      <button class="btn-primary-spotify" onclick="openCornerDrawer('feedback')" style="font-size: 0.76rem; padding: 0.45rem 1rem;">
+        <i class="fa-solid fa-comment-dots"></i> Feedback MSQ
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FLOATING CORNER NOTIFICATION & CERTIFICATE / FEEDBACK DRAWER (FAB)
+       ========================================================================== -->
+  <div class="floating-corner-widget">
+    <!-- Pop-up Drawer Panel -->
+    <div class="corner-drawer-panel" id="cornerDrawer">
+      <div class="drawer-header">
+        <h4>
+          <i class="fa-solid fa-bell" style="color: var(--accent-spotify);"></i>
+          Notification & Service Desk
+        </h4>
+        <button id="closeDrawerBtn" style="background: transparent; color: var(--text-muted); font-size: 1.1rem; cursor: pointer;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Tabs -->
+      <div class="drawer-tabs">
+        <button class="drawer-tab-btn active" id="tabBtnFeedback">
+          <i class="fa-solid fa-list-check"></i> Feedback MSQ
+        </button>
+        <button class="drawer-tab-btn" id="tabBtnCertificate">
+          <i class="fa-solid fa-award"></i> Certificate
+        </button>
+        <button class="drawer-tab-btn" id="tabBtnNotifications">
+          <i class="fa-solid fa-bullhorn"></i> Alerts
+        </button>
+      </div>
+
+      <!-- Tab Pane 1: Feedback Form (5-6 MSQ Questions) -->
+      <div class="drawer-content-pane active" id="feedbackPane">
+        <div style="margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem;">
+          <h5 style="color: #fff; font-size: 0.95rem; font-weight: 700;">Event Quality Feedback Form</h5>
+          <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            Answer the 6 MSQ questions below to unlock your verifiable digital attendance certificate.
+          </p>
+        </div>
+        <form id="feedbackForm">
+          <!-- Injected dynamically from CCMS_DATA.feedbackQuestions -->
+        </form>
+      </div>
+
+      <!-- Tab Pane 2: Verifiable Downloadable Certificate System -->
+      <div class="drawer-content-pane" id="certificatePane">
+        <div style="margin-bottom: 1rem;">
+          <h5 style="color: #fff; font-size: 0.95rem; font-weight: 700;">Download Official Certificate</h5>
+          <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            Generated with official institution gold seal and cryptographic signature verification hash.
+          </p>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label style="font-size: 0.78rem; color: var(--text-secondary);">Select Your Event Registration:</label>
+          <select id="certSelectReg" class="picker-select-control" style="width: 100%; font-size: 0.8rem; padding: 0.5rem 0.75rem;">
+            <!-- Dynamically populated from registered events -->
+          </select>
+        </div>
+
+        <!-- Real-time HTML5 Canvas for Certificate -->
+        <canvas id="certCanvas" class="cert-preview-canvas" width="1000" height="700"></canvas>
+
+        <button class="btn-primary-spotify" id="btnDownloadCert" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+          <i class="fa-solid fa-download"></i> Download High-Res Certificate (.PNG)
+        </button>
+      </div>
+
+      <!-- Tab Pane 3: System Notifications -->
+      <div class="drawer-content-pane" id="notificationsPane">
+        <!-- Dynamically rendered notification list -->
+      </div>
+    </div>
+
+    <!-- Floating Action Button (FAB) -->
+    <button class="fab-toggle-btn" id="fabToggleBtn" title="Open Notifications, Feedback & Certificates">
+      <i class="fa-solid fa-bolt"></i>
+      <div class="fab-badge-count" id="drawerNotificationBadge">3</div>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 1: EVENT DETAILS MODAL (RULES, TEAMS, DISQUALIFICATION, VENUE)
+       ========================================================================== -->
+  <div class="modal-overlay" id="eventDetailModal">
+    <div class="modal-container">
+      <!-- Populated dynamically when details clicked -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: REGISTRATION MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="registrationModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="closeRegModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      <div style="padding: 2rem 2.2rem;">
+        <span style="font-size: 0.74rem; color: var(--accent-spotify); font-weight: 800; text-transform: uppercase;">
+          Official Event Registration • 2026
+        </span>
+        <h3 id="regEventTitle" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 0.25rem;">
+          Silver Jubilee Grand Gala
+        </h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary);" id="regClubTitle">
+          Aura Harmonics (Singing & Music Club)
+        </p>
+
+        <form id="registrationForm" class="registration-form-grid">
+          <input type="hidden" id="regEventIdInput">
+          <input type="hidden" id="regClubIdInput">
+
+          <div class="form-group">
+            <label>Student Full Name *</label>
+            <input type="text" id="regStudentName" value="Shorajit Das" required>
+          </div>
+
+          <div class="form-group">
+            <label>Student University ID *</label>
+            <input type="text" id="regStudentId" value="STU-8821" required>
+          </div>
+
+          <div class="form-group">
+            <label>Academic Department *</label>
+            <select id="regStudentDept" required>
+              <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Electronics & Communication">Electronics & Communication</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Biotechnology">Biotechnology</option>
+              <option value="School of Management">School of Management</option>
+              <option value="Performing Arts & Design">Performing Arts & Design</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Current Year of Study *</label>
+            <select id="regStudentYear" required>
+              <option value="1st Year (Freshman)">1st Year (Freshman)</option>
+              <option value="2nd Year (Sophomore)">2nd Year (Sophomore)</option>
+              <option value="3rd Year (Junior)" selected>3rd Year (Junior)</option>
+              <option value="4th Year (Senior)">4th Year (Senior)</option>
+              <option value="Postgraduate / M.Tech / MBA">Postgraduate / M.Tech / MBA</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="regStudentEmail" value="shorajid.das@campus.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" id="regStudentPhone" value="+91 98765 43210" required>
+          </div>
+
+          <div class="form-group">
+            <label>Team Name (If ensemble / group)</label>
+            <input type="text" id="regTeamName" value="Aura Symphonics Solo">
+          </div>
+
+          <div class="form-group">
+            <label>Team Members (Comma-separated)</label>
+            <input type="text" id="regTeamMembers" value="Shorajit Das">
+          </div>
+
+          <div class="form-full-width" style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+            <button type="button" class="btn-secondary-glass" onclick="document.getElementById('registrationModal').classList.remove('active')">
+              Cancel
+            </button>
+            <button type="submit" class="btn-primary-spotify">
+              <i class="fa-solid fa-check"></i> Complete Registration & Save to DB
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: REGISTRATION CONFIRMATION PASS MODAL (DIGITAL PASS WITH BARCODE)
+       ========================================================================== -->
+  <div class="modal-overlay" id="confirmationModal">
+    <div class="modal-container">
+      <!-- Populated dynamically with official entry ticket pass -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Data & Logic Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

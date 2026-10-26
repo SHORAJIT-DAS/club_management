@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board Members & Volunteers Portal • PulseCampus CCMS 2026</title>
+  <meta name="description" content="Dedicated Board Members & Volunteers Portal: Select club to inspect live event timings, Uber-style execution milestones, stage management, and volunteer dispatch rosters.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Pro CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-default-role="board">
+
+  <!-- Promo Ribbon -->
+  <div style="background: linear-gradient(90deg, #ff9100, #ff2a70); color: #fff; font-size: 0.76rem; font-weight: 800; padding: 0.45rem 1rem; text-align: center; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+    <span><i class="fa-solid fa-satellite-dish"></i> LIVE VOLUNTEER & BOARD DISPATCH CONSOLE</span>
+    <span style="opacity: 0.9; font-weight: 600;">• Select Your Club to View Real-Time Event Timings, Stage Milestones & Duty Rosters</span>
+  </div>
+
+  <!-- Header -->
+  <header class="ccms-header">
+    <div class="brand-wrapper">
+      <div class="brand-icon-box" style="background: linear-gradient(135deg, #ff9100, #ff2a70);">
+        <i class="fa-solid fa-shield-halved" style="color: #fff; font-size: 1.3rem;"></i>
+      </div>
+      <div class="brand-titles">
+        <h1 style="cursor: pointer;" onclick="window.location.href='index.html'">BOARD<span style="color: #ff9100;">LIVE</span></h1>
+        <div class="brand-tag">PulseCampus CCMS • Board Member Client</div>
+      </div>
+    </div>
+
+    <!-- Navigation Switcher -->
+    <div class="role-nav-group" id="roleNavPills">
+      <a href="student.html" class="role-pill-btn" style="text-decoration: none;">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Student</span>
+      </a>
+      <a href="faculty.html" class="role-pill-btn" style="text-decoration: none;">
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <span>Faculty</span>
+      </a>
+      <button class="role-pill-btn active board" id="btnRoleBoard">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Board Lead</span>
+      </button>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <a href="index.html" class="btn-card-details" style="font-size: 0.74rem; padding: 0.45rem 0.85rem; text-decoration: none;">
+        <i class="fa-solid fa-house"></i> Main Hub
+      </a>
+      <div class="user-badge" id="btnUserProfile" title="Current Active Profile">
+        <div class="user-2d-avatar board" id="user2dAvatar">
+          <i class="fa-solid fa-shield-halved" id="avatarIcon"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Aarav Sharma</div>
+          <div class="user-role-label" id="userRoleLabel" style="color: var(--accent-amber);">Board Member / Volunteer</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="btnLogout" onclick="handleLogout()" title="Log Out of PulseCampus">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Log Out</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Layout Wrapper -->
+  <div class="ccms-app-layout">
+    
+    <!-- Sidebar -->
+    <aside class="spotify-sidebar">
+      <div>
+        <div class="sidebar-section-title">Board Operations</div>
+        <ul class="sidebar-nav-list">
+          <li>
+            <a href="#boardViewWrapper" class="sidebar-link active">
+              <i class="fa-solid fa-route" style="color: var(--accent-amber);"></i>
+              <span>Live Timeline Dispatch</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="window.showLiveToast('Roster Verified', 'All 15 stage volunteers marked active and in position', 'success')" class="sidebar-link">
+              <i class="fa-solid fa-user-group" style="color: var(--accent-spotify);"></i>
+              <span>Check-in Volunteers</span>
+            </a>
+          </li>
+          <li>
+            <a href="student.html" class="sidebar-link">
+              <i class="fa-solid fa-ticket" style="color: var(--accent-cyan);"></i>
+              <span>View Student Passes</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Select Club Duty</div>
+        <div class="club-mini-list">
+          <div class="club-mini-item active" onclick="document.getElementById('boardClubSelect').value='singing'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #1db954;"></span>
+            <span>Aura Harmonics (Singing)</span>
+          </div>
+          <div class="club-mini-item" onclick="document.getElementById('boardClubSelect').value='dancing'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #ff007f;"></span>
+            <span>Pulse Choreotech (Dancing)</span>
+          </div>
+          <div class="club-mini-item" onclick="document.getElementById('boardClubSelect').value='hackathons'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #00f2fe;"></span>
+            <span>CodeNova Nexus (Hackathons)</span>
+          </div>
+          <div class="club-mini-item" onclick="document.getElementById('boardClubSelect').value='sports'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #ff9100;"></span>
+            <span>Apex Titans (Sports)</span>
+          </div>
+          <div class="club-mini-item" onclick="document.getElementById('boardClubSelect').value='research'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #9d4edd;"></span>
+            <span>Syntropy Labs (Research)</span>
+          </div>
+          <div class="club-mini-item" onclick="document.getElementById('boardClubSelect').value='fashion'; document.getElementById('boardClubSelect').dispatchEvent(new Event('change'));">
+            <span class="club-mini-bullet" style="background: #ff0055;"></span>
+            <span>Vogue Vanguard (Fashion)</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem;">
+        <div style="color: var(--accent-amber); font-size: 0.75rem; font-weight: 700;">
+          <i class="fa-solid fa-headset"></i> Stage Comms Channel
+        </div>
+        <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.35rem;">
+          Radio Channel 4 active for live amphitheatre & venue volunteer coordinators.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Viewport -->
+    <main class="main-viewport" id="boardViewWrapper">
+      
+      <!-- Board Portal Section -->
+      <section id="boardPortalView" style="display: block;">
+        <div class="uber-tracker-wrapper">
+          
+          <!-- Board Hero Banner -->
+          <div class="portal-hero-banner" style="background: linear-gradient(135deg, rgba(255, 145, 0, 0.2), rgba(255, 42, 112, 0.15)), var(--bg-card);">
+            <div>
+              <div class="live-pulse-badge">
+                <span class="pulse-dot"></span> Uber-Style Live Event Tracker
+              </div>
+              <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; margin: 0.5rem 0;">
+                Live Event Timings & Volunteer Dispatch
+              </h2>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; max-width: 650px;">
+                As a board member or event coordinator, select one club below to see its exact event timings, stage milestones, sound check progress, and volunteer duties.
+              </p>
+            </div>
+            <div style="text-align: right;">
+              <div style="background: var(--bg-elevated); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: inline-block;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Volunteer Station</span>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent-amber);">All Stages Standby</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: BOARD MEMBER SELECTS ONE CLUB -->
+          <div class="faculty-club-picker" style="border: 2px solid rgba(255, 145, 0, 0.4);">
+            <div class="picker-left">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 145, 0, 0.2); display: flex; align-items: center; justify-content: center; color: var(--accent-amber); font-size: 1.3rem;">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <strong style="color: #fff; display: block; font-size: 1.05rem;">Select Club to View Live Event Timings</strong>
+                <span style="font-size: 0.8rem; color: var(--text-secondary);">Only event timings and volunteer milestones are displayed for coordination and learning</span>
+              </div>
+            </div>
+            <select class="picker-select-control" id="boardClubSelect" style="font-size: 0.95rem; padding: 0.75rem 1.4rem; border-color: var(--accent-amber);">
+              <!-- Populated dynamically with Singing, Dancing, Hackathons, Sports, Research, Fashion -->
+            </select>
+          </div>
+
+          <!-- Uber-Style Live Timeline Containers -->
+          <div id="boardTimelineContainer">
+            <!-- Timelines injected by app.js -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Hidden placeholders so app.js scripts don't fail -->
+      <section id="studentPortalView" style="display: none;"></section>
+      <section id="facultyPortalView" style="display: none;"></section>
+
+    </main>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
